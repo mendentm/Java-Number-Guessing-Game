@@ -1,0 +1,62 @@
+import java.util.Scanner;
+
+public class NumberGuessingGame {
+   public static void main(String[] args) {
+      Scanner scnr = new Scanner(System.in);
+      // A number guessing game where the user guesses a random generated number from a range. 
+
+      // Initializing the variables including the random number variable. 
+      int score = 10;
+      int min = 1;
+      int max = 100; 
+      int secretNumber = (int)(Math.random()*(max - min +1)+ min); 
+      
+      // A brief greeting and some instructions.
+      System.out.println();
+      System.out.println("Enter numbers until you guess the Secret Number!");
+      System.out.println("You have 10 attempts and your score goes down with each attempt.");
+      System.out.println("The range is between 1 and 100.");
+      System.out.println("Good Luck!");
+    
+      // The intializing loop that takes in input for each iteration and subtracts the guesses by 1.
+      for (int guesses = 9; guesses >= 0; --guesses){
+      System.out.println();
+      int userGuess = scnr.nextInt();
+
+      // If the guess is greater than the secret number.
+      if (userGuess > secretNumber)
+      { 
+        --score;
+        System.out.println();
+        System.out.println("Sorry, that guess was too HIGH!");
+        System.out.println("Guesses: " + guesses);
+        continue;
+      }
+
+      // If the guess is less than the secret number.
+      else if (userGuess < secretNumber)
+      {
+        --score;
+        System.out.println();
+        System.out.println("Sorry, that guess was too LOW!");
+        System.out.println("Guesses: " + guesses);
+        continue;
+      }
+
+      // If the guess is equal to the secret number.
+      else 
+      {
+        System.out.println();
+        System.out.println("That's correct! You win!");       
+        break;
+      }
+      }
+
+      // Formatting the results of the game.
+      System.out.println("------------------------------------");
+      System.out.println("Secret Number: " + secretNumber);              
+      System.out.println("Score: " + score);                       
+      System.out.println("------------------------------------");
+      System.out.println();
+   }  
+}
